@@ -1,27 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
-
-# Project name
-project(NycoCAN)
+project(Threadsafe_CAN)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(
-    ${PROJECT_NAME}
-    src/main.cpp
-    src/CanDriver.cpp
-    src/CanMessage.cpp
-    src/CanInterface.cpp
-    src/SimpleMessageObserver.cpp
-    src/CanMessageObserverManager.cpp
-)
-
-target_link_libraries(
-    ${PROJECT_NAME}
-    socketcan
-)
-
-target_include_directories(
-    ${PROJECT_NAME}
-    PRIVATE
-    include
-)
+add_subdirectory(src)
+add_subdirectory(examples)

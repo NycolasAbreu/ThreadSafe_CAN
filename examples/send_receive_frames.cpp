@@ -8,7 +8,8 @@
 #include "CanMessageObserverManager.h"
 #include "SimpleMessageObserver.h"
 
-void PrintCanMessage(const CanMessage& msg) {
+void PrintCanMessage(const CanMessage& msg) 
+{
   std::cout << "Sent CAN frame with ID: " << std::hex << msg.GetCanID() << "\n";
   std::cout << "Data: ";
   for (const auto& byte : msg.GetData())
@@ -18,11 +19,14 @@ void PrintCanMessage(const CanMessage& msg) {
   std::cout << "\n";
 }
 
-int main(int argc, char **argv) {
-  if (argc != 3) {
+int main(int argc, char **argv) 
+{
+  if (argc != 3) 
+  {
     std::cerr << "Usage: <CAN interface> <CAN mode S send R read>" << "\n";
     return 1;
   }
+
   const std::string interface = argv[1];
   const std::string mode = argv[2];
 
@@ -37,7 +41,8 @@ int main(int argc, char **argv) {
   CanInterface can(std::make_unique<CanDriver>(interface), observer_manager);
   can.Start();
 
-  if (mode == "S" || mode == "s") {
+  if (mode == "S" || mode == "s") 
+  {
     while (true)
     {
       const auto msg = CanMessage(0x111, {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08});
